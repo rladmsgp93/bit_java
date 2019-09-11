@@ -16,7 +16,7 @@ public class Test03_StringBuffer {
 		StringBuilder sb = new StringBuilder();
 		sb.append("hello ");// 객체를 계속 다시 생성하는 게 아니라 그냥 버퍼에 축적
 		sb.append(new Date());
-		sb.append(" java");
+		sb.append("java");
 		sb.append(" test");
 		sb.append('A');
 		sb.append(89);

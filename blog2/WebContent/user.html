@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content = "width=device-width,initial-scale =1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style type="text/css">
+.error{
+color:red;
+}
+</style>
+
+<script type="text/javascript">
+const log = console.log;
+let xdata;
+$(function(){
+	$('#id_check').click(function(){ 
+		idcheck();
+	})
+	
+});
+function idcheck(){
+$.ajax({
+	url:'json/id_check.jsp',
+   dataType:'json',
+   data:{
+	   id:$('#id').val()
+   },
+   success:function(data){
+	   //xdata = data;
+	   //alert(data);
+	   if(data.id ==undefined){
+		   $('#msg1').html('사용가능한 id 입니다.');
+	   }
+	   else{
+		    $('#msg1').html('사용 중인 id 입니다.')
+	   }
+   },
+   error:function(e){
+	   alert("error"+e)
+   }
+	
+})	
+}
+</script>
+<title>users 회원 가입 정보</title>
+</head>
+<body>
+<h3>users 회원 가입</h3>
+<form action = "adduser.jsp" method = "get">
+<table border = "1">
+<tr>
+<td><label for = "id">ID</label></td>
+<td><input type = "text" id = "id" name = "id" value = ""/>
+<input type = "button" value = "id 중복체크" id = "id_check">
+<br>
+<span id="msg1" class = "error"></span>
+</td>
+</tr>
+<tr>
+<td><label for = "pw">PW</label></td>
+<td><input type = "password" id = "pw" name = "pw" value = ""/> </td>
+</tr>
+<tr>
+<td><label for = "name">NAME</label></td>
+<td><input type = "text" id = "name" name = "name" value = ""/> </td>
+</tr>
+<tr>
+<td><label for = "role">ROLE</label></td>
+<td><input type = "radio" id = "role" name = "role" value = "admin"/>admin 
+<input type = "radio" id = "role" name = "role" value = "user"/> user</td>
+</tr>
+</table>
+<input type="submit" value="회원가입">
+</form>
+</body>
+</html>

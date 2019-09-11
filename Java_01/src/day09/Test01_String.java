@@ -14,6 +14,7 @@ public class Test01_String {
 		String msg1 = "java programming/23000/가나";
 		System.out.println(msg1.toUpperCase());
 		System.out.println(msg1);
+		System.out.println(msg1.indexOf("/"));
 		if(msg1.indexOf("/")==-1) {
 			System.out.println("다시 입력하세유ㅇㅅㅇ");
 			System.out.println("/가 필요해유");
