@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content = "width=device-width,initial-scale =1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font">
+</head>
 <style type="text/css">
 .error{
 color:red;
@@ -11,6 +15,7 @@ color:red;
 </style>
 
 <script type="text/javascript">
+
 const log = console.log;
 let xdata;
 $(function(){
@@ -46,6 +51,20 @@ $.ajax({
 <title>users 회원 가입 정보</title>
 </head>
 <body>
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+     
+    </a>
+             <a href="home.html" class="w3-bar-item w3-button">HOME</a>
+             <a href="william.html" class="w3-bar-item w3-button"> WILLIAM</a>
+             <a href="bentley.html" class="w3-bar-item w3-button">BENTLEY</a>
+             <a href="gunhoo.html" class="w3-bar-item w3-button">GUNHOO</a>
+             <a href="login.html" class="w3-bar-item w3-button">LOGIN</a>
+             <a href="user.html" class="w3-bar-item w3-button">회원가입</a>
+  </div>
+</div>
+<br><br>
 <h3>users 회원 가입</h3>
 <form action = "adduser.jsp" method = "get">
 <table border = "1">
@@ -73,5 +92,6 @@ $.ajax({
 </table>
 <input type="submit" value="회원가입">
 </form>
+
 </body>
 </html>
