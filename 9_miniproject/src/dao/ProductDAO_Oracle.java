@@ -6,14 +6,16 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import util.JDBCUtil;
 import vo.ProductVO;
 
 public class ProductDAO_Oracle extends ProductDAO {
 	
- 	public List<ProductVO> getBookRec(){
+ 	public List<ProductVO> getProductRec(String userid){
  		String sql =
- 				"select * from products";
+ 				"select * from products where userid=?";
  					   
  					    		
  					    		
@@ -27,18 +29,21 @@ public class ProductDAO_Oracle extends ProductDAO {
 			con = JDBCUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			//실행 및 결과값 핸들링
+		    ps.setString(1,userid);
             rs = ps.executeQuery();
+       
+            
             while (rs.next()) {
 				ProductVO vo = new ProductVO();
-				vo.setP_id(rs.getInt("P_id"));
+				vo.setPid(rs.getString("pid"));
 				vo.setPname(rs.getString("pname"));
 				vo.setCategory((rs.getString("category")));
-				vo.setPrice(rs.getInt("price"));
-				vo.setImg((rs.getString("img")));
+				vo.setPrice(rs.getString("price"));
 				vo.setUserid((rs.getString("userid")));
+				vo.setImg((rs.getString("img")));
 				list.add(vo);
+				System.out.println("DAO vo"+vo);
 			}
-
             
 		}catch (Exception e) {
           e.printStackTrace();
@@ -50,7 +55,7 @@ public class ProductDAO_Oracle extends ProductDAO {
 	}
 	
 	public int insertProduct(ProductVO vo) throws Exception{
-		String sql= "INSERT INTO products(p_id, pname, category, price, img, userid) VALUES(p_id.nextval,?,?,?,?,?)";
+		String sql= "INSERT INTO products(pid, pname, category, price, userid,img) VALUES(pid.nextval,?,?,?,?,?)";
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -59,13 +64,13 @@ public class ProductDAO_Oracle extends ProductDAO {
 		try {
 			con = JDBCUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			// ? 세팅
+		
 			
 			ps.setString(1, vo.getPname());
 			ps.setString(2, vo.getCategory());
-			ps.setInt(3, vo.getPrice());
-			ps.setString(4, vo.getImg());
-			ps.setString(5, vo.getUserid());
+			ps.setString(3, vo.getPrice());
+			ps.setString(4, vo.getUserid());
+			ps.setString(5, vo.getImg());
 			
 			//실행 및 결과값 핸들링
             result = ps.executeUpdate();
@@ -79,7 +84,7 @@ public class ProductDAO_Oracle extends ProductDAO {
 	}
  	
 	
-	public int deleteBook(int P_id) {
+	public int deleteProduct(String pid) {
 		String sql = "delete from products where pid = ?";
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -89,7 +94,7 @@ public class ProductDAO_Oracle extends ProductDAO {
 			con = JDBCUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			// ? 세팅
-			ps.setInt(1, P_id);
+			ps.setString(1, pid);
 			//실행 및 결과값 핸들링
             result = ps.executeUpdate();
             

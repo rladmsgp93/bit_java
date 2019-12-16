@@ -5,8 +5,8 @@ import vo.ProductVO;
 
 public interface ProductService {
 	
-	List<ProductVO> ProductList();
+	List<ProductVO> ProductList(String userid);
 	int addProduct(ProductVO vo) throws Exception;
-	int deleteProduct(int pid);
+	int deleteProduct(String pid);
 
 }

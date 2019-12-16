@@ -11,6 +11,11 @@
 <link rel="stylesheet" href="css/prob1.css">
 <link rel="stylesheet" href="css/table.css">
 <link rel="stylesheet" href="css/button.css">
+<%
+        request.setCharacterEncoding("UTF-8");
+        String userid = request.getParameter("userid");
+        
+            %>
 <script type="text/javascript">
 	function f1() {
 		return confirm("정말 삭제할거니?")
@@ -30,34 +35,35 @@ img {
 	<div id="output">
 		<section>
 
-			<h3>book list</h3>
+			<h3>Product list</h3>
 			<form action="deleteProduct.do">
 				<table class="tablea">
 					<tr>
-						<th>P_id</th>
+						
 						<th>pname</th>
 						<th>category</th>
 						<th>price</th>
 						<th>img</th>
-						<th>userid</th>
+						
+			
 						<th><input type="submit" id="" value="삭제"
 							onclick="return f1()"></th>
 					</tr>
 					<c:forEach var="data" items="${productlist}">
 						<tr>
-							<td>${data.P_id}</td>
+							
 							<td>${data.pname}</td>
 							<td>${data.category}</td>
 							<td>${data.price}</td>
-							<td>${data.img}</td>
-							<td>${data.userid}</td>
-
+							<td><img src="${data.img}" alt=""></td>
+			
 							<td><input type="checkbox" name="pid" value="${data.pid}"></td>
 						</tr>
 					</c:forEach>
 				</table>
+				<input type="hidden" name="userid" value="<%=userid%>">
 			</form>
-
+              
 		</section>
 	</div>
 

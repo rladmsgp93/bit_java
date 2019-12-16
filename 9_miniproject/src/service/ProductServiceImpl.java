@@ -22,8 +22,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<ProductVO> ProductList() {
-		return dao.getProductRec();
+	public List<ProductVO> ProductList(String userid) {
+		return dao.getProductRec(userid);
 	}
 
 	@Override
@@ -32,8 +32,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int deleteProduct(int P_id) {
-		return dao.deleteProduct(P_id);
+	public int deleteProduct(String pid) {
+		return dao.deleteProduct(pid);
 	}
 
 }
